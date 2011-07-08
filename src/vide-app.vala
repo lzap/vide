@@ -19,7 +19,7 @@
 using Gtk;
 using Cairo;
 
-public class Sample.App : Window
+public class Vide.App : Window
 {
   private Gauge gauge;
   private bool  direction;
@@ -30,7 +30,7 @@ public class Sample.App : Window
                  needle;
     string       path;
 
-    set_title( _("Sample Vala application") );
+    set_title( _("Vide Terminal") );
     set_default_size( 300, 200 );
     this.destroy.connect( Gtk.main_quit );
 

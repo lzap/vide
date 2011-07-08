@@ -19,7 +19,7 @@
 using Gtk;
 using Cairo;
 
-public class Sample.Gauge : DrawingArea
+public class Vide.Gauge : DrawingArea
 {
   /* Private fields */
   private int    width;
