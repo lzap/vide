@@ -1,6 +1,6 @@
 # configure.ac
 
-AC_INIT([Sampala],[0.2])
+AC_INIT([Vide],[0.1])
 AC_CONFIG_SRCDIR([src/vide.vala])
 AC_CONFIG_HEADERS([config.h])
 
@@ -17,12 +17,12 @@ AM_PROG_VALAC([0.7.0])
 AC_PROG_INSTALL
 IT_PROG_INTLTOOL([0.35])
 
-pkg_modules="gtk+-2.0 >= 2.14.0"
-SAMPALA_PACKAGES="--pkg gtk+-2.0"
-PKG_CHECK_MODULES(SAMPALA, [$pkg_modules])
-AC_SUBST(SAMPALA_CFLAGS)
-AC_SUBST(SAMPALA_LIBS)
-AC_SUBST(SAMPALA_PACKAGES)
+pkg_modules="gtk+-2.0 >= 2.14.0 vte >= 0.28.0"
+VIDE_PACKAGES="--pkg gtk+-2.0 --pkg vte"
+PKG_CHECK_MODULES(VIDE, [$pkg_modules])
+AC_SUBST(VIDE_CFLAGS)
+AC_SUBST(VIDE_LIBS)
+AC_SUBST(VIDE_PACKAGES)
 
 GETTEXT_PACKAGE=vide
 AC_DEFINE_UNQUOTED([GETTEXT_PACKAGE], ["$GETTEXT_PACKAGE"], [Gettext Package])

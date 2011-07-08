@@ -6,14 +6,14 @@ vide_SOURCES = \
 
 INCLUDES = \
 	-include config.h \
-	$(SAMPALA_CFLAGS) \
+	$(VIDE_CFLAGS) \
 	-DLOCALEDIR=\""$(localedir)"\" \
 	-DPKGDATADIR=\""$(pkgdatadir)"\" \
 	-DPKGLIBDIR=\""$(pkglibdir)"\"
 
 VALAFLAGS = \
 	--vapidir=$(srcdir)/../vapi --pkg config \
-	@SAMPALA_PACKAGES@
+	@VIDE_PACKAGES@
 
 vide_LDADD = \
-	$(SAMPALA_LIBS)
+	$(VIDE_LIBS)

@@ -18,6 +18,7 @@
 
 using Gtk;
 using Cairo;
+using Vte;
 
 public class Vide.App : Window {
 
@@ -26,16 +27,27 @@ public class Vide.App : Window {
     set_default_size(300, 200);
     this.destroy.connect(Gtk.main_quit);
 
+    var notebook = new Notebook();
+
     var toolbar = new Toolbar ();
     var combo = new MenuToolButton.from_stock(Stock.MEDIA_PLAY);
     combo.is_important = true;
+    combo.clicked.connect(() => {
+        //var frame = new Frame("I'm a frame in a notebook !!!");
+        //frame.set_border_width(10);
+        //frame.set_size_request(100, 75);
+        //frame.show();
+        var term = new Terminal();
+        //term.child_exited.connect ( (t)=> { Gtk.main_quit(); } );
+        term.fork_command(null,null,null,null, true, true,true);
+        term.show();
+        notebook.append_page(term, new Label("Test"));
+        });
     toolbar.add(combo);
     var quit_button = new ToolButton.from_stock(Stock.QUIT);
     quit_button.is_important = true;
     quit_button.clicked.connect(Gtk.main_quit);
     toolbar.add(quit_button);
-
-    var notebook = new Notebook();
 
     var vbox = new VBox(false, 0);
     vbox.pack_start(toolbar, false, true, 0);
