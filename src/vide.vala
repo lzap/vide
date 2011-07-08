@@ -26,7 +26,7 @@ int main( string[] args ) {
   Gtk.init( ref args );
 
   var test = new App();
-  test.show();
+  test.show_all();
 
   Gtk.main();
 

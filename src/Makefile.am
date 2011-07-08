@@ -2,7 +2,6 @@ bin_PROGRAMS = vide
 
 vide_SOURCES = \
 	vide.vala \
-	vide-gauge.vala \
 	vide-app.vala
 
 INCLUDES = \

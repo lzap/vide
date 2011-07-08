@@ -22,9 +22,25 @@ using Cairo;
 public class Vide.App : Window {
 
   public App() {
-    set_title( _("Vide Terminal") );
-    set_default_size( 300, 200 );
-    this.destroy.connect( Gtk.main_quit );
+    set_title(_("Vide Terminal"));
+    set_default_size(300, 200);
+    this.destroy.connect(Gtk.main_quit);
+
+    var toolbar = new Toolbar ();
+    var combo = new MenuToolButton.from_stock(Stock.MEDIA_PLAY);
+    combo.is_important = true;
+    toolbar.add(combo);
+    var quit_button = new ToolButton.from_stock(Stock.QUIT);
+    quit_button.is_important = true;
+    quit_button.clicked.connect(Gtk.main_quit);
+    toolbar.add(quit_button);
+
+    var notebook = new Notebook();
+
+    var vbox = new VBox(false, 0);
+    vbox.pack_start(toolbar, false, true, 0);
+    vbox.pack_start(notebook, true, true, 0);
+    add(vbox);
   }
 
 }
