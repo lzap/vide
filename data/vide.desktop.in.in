@@ -1,9 +1,9 @@
 [Desktop Entry]
 Type=Application
 Version=1.0
-_Name=Sampala
-_GenericName=Sample Vala application
-_Comment=Vala application that can serve as a learnign example
+_Name=Vide
+_GenericName=Vide
+_Comment=Terminal with tabs and DBUS support
 Exec=vide
 Icon=vide
 Terminal=false
