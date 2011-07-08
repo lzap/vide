@@ -2,7 +2,7 @@ bin_PROGRAMS = vide
 
 vide_SOURCES = \
 	vide.vala \
-	vide-app.vala
+	main_window.vala
 
 INCLUDES = \
 	-include config.h \

@@ -20,11 +20,11 @@ using Gtk;
 using Cairo;
 using Vte;
 
-public class Vide.App : Window {
+public class Vide.MainWindow: Window {
 
-  public App() {
+  public MainWindow() {
     set_title(_("Vide Terminal"));
-    set_default_size(300, 200);
+    set_default_size(800, 600);
     this.destroy.connect(Gtk.main_quit);
 
     var notebook = new Notebook();
@@ -33,10 +33,6 @@ public class Vide.App : Window {
     var combo = new MenuToolButton.from_stock(Stock.MEDIA_PLAY);
     combo.is_important = true;
     combo.clicked.connect(() => {
-        //var frame = new Frame("I'm a frame in a notebook !!!");
-        //frame.set_border_width(10);
-        //frame.set_size_request(100, 75);
-        //frame.show();
         var term = new Terminal();
         //term.child_exited.connect ( (t)=> { Gtk.main_quit(); } );
         term.fork_command(null,null,null,null, true, true,true);
