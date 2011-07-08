@@ -1,0 +1,4 @@
+[encoding: UTF-8]
+data/vide.desktop.in.in
+src/vide-gauge.vala
+src/vide-app.vala

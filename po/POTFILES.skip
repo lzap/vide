@@ -1,0 +1,3 @@
+data/vide.desktop.in
+src/vide-gauge.c
+src/vide-app.c
