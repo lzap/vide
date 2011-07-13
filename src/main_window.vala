@@ -22,6 +22,8 @@ using Vte;
 
 public class Vide.MainWindow: Window {
 
+  Worker workers = new Worker();
+
   public MainWindow() {
     set_title(_("Vide Terminal"));
     set_default_size(800, 600);

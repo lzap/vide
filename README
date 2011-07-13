@@ -5,16 +5,43 @@ vide -- multiple-tabs terminal with DBUS support
 A quick introduction
 --------------------
 
-Stay tuned :-)
+Vim is the best text editor, I use it 10 hours a day. It has many features for developers, but it has quite poor external command execution. While it is possible to run external programs in xterm (or using start.exe on Windows) it would be nice to have integrated terminal for running external programs (Python, Perl, Ruby scripts, compilation scripts etc).
 
+Vide is very simple terminal that waits on DBUS and one can send commands to named tabs, like executing compilation scripts, programs or even debug things in the CLI. It's very easy to setup and use:
+
+1. Start vide.
+2. Start vim.
+3. Issue `:!vide-cmd tab_name command to execute`
+
+Examples:
+
+    vide-cmd compile gcc -o hello *.c
+    vide-cmd unit_tests rake spec
+    vide-cmd start_gui python main_app_gui.py
+    vide-cmd run_webserver rails server
+
+The coolest thing is if you issue vide-cmd with the same tab name again. The old process is stopped and terminal is cleared.
 
 System requirements
 -------------------
 
+DBUS, GTK, VTE and Gee libraries to run it.
 
+Vala compiler to compile it.
 
 How to use
 ----------
 
+Development setup
+-----------------
 
-<!-- vim:se syn=markdown : -->
+    git clone git://github.com/lzap/vide.git
+    cd vide
+    ./autogen.sh --prefix=/tmp/vide_devel
+    make install
+
+The last step installs data files in the /tmp dir. Now you can code, hack, compile and run with:
+
+    make && src/vide
+
+<!-- vim:se syn=markdown:sw=4:ts=4:et: -->
