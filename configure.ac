@@ -32,6 +32,7 @@ AM_GLIB_GNU_GETTEXT
 
 AC_CONFIG_FILES([
 	Makefile
+  scripts/Makefile
 	data/vide.desktop.in
 	data/Makefile
 	data/icons/Makefile
@@ -46,4 +47,7 @@ AC_CONFIG_FILES([
 	src/Makefile
 	vapi/Makefile
 ])
+
+AC_CONFIG_FILES([scripts/videx], [chmod +x scripts/videx])
+
 AC_OUTPUT
