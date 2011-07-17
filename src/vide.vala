@@ -18,15 +18,28 @@
 
 using Vide;
 
+void on_bus_aquired(DBusConnection conn) {
+  try {
+    conn.register_object("/com/github/vide", Server.get_instance());
+  } catch (IOError e) {
+    stderr.printf ("Could not register DBUS service\n");
+  }
+}
+
 int main( string[] args ) {
   Intl.bindtextdomain( Config.GETTEXT_PACKAGE, Config.LOCALEDIR );
   Intl.bind_textdomain_codeset( Config.GETTEXT_PACKAGE, "UTF-8" );
   Intl.textdomain( Config.GETTEXT_PACKAGE );
 
-  Gtk.init( ref args );
+  Bus.own_name (BusType.SESSION, "com.github.Vide", BusNameOwnerFlags.NONE,
+      on_bus_aquired,
+      () => {},
+      () => stderr.printf ("Could not aquire DBUS name\n"));
 
-  var test = new MainWindow();
-  test.show_all();
+  Gtk.init( ref args );
+  var main_window = new MainWindow();
+  Server.get_instance().main_window = main_window;
+  main_window.show_all();
 
   Gtk.main();
 

@@ -19,28 +19,25 @@
 using Gtk;
 using Cairo;
 using Vte;
+using Gee;
 
 public class Vide.MainWindow: Window {
 
-  Worker workers = new Worker();
+  private HashMap<string, Terminal> terminals = new HashMap<string, Terminal>();
+
+  private Notebook notebook;
 
   public MainWindow() {
     set_title(_("Vide Terminal"));
     set_default_size(800, 600);
     this.destroy.connect(Gtk.main_quit);
 
-    var notebook = new Notebook();
+    notebook = new Notebook();
 
     var toolbar = new Toolbar ();
     var combo = new MenuToolButton.from_stock(Stock.MEDIA_PLAY);
     combo.is_important = true;
-    combo.clicked.connect(() => {
-        var term = new Terminal();
-        //term.child_exited.connect ( (t)=> { Gtk.main_quit(); } );
-        term.fork_command(null,null,null,null, true, true,true);
-        term.show();
-        notebook.append_page(term, new Label("Test"));
-        });
+    //combo.clicked.connect(() => {});
     toolbar.add(combo);
     var quit_button = new ToolButton.from_stock(Stock.QUIT);
     quit_button.is_important = true;
@@ -51,6 +48,24 @@ public class Vide.MainWindow: Window {
     vbox.pack_start(toolbar, false, true, 0);
     vbox.pack_start(notebook, true, true, 0);
     add(vbox);
+  }
+
+  public int execute_tab(string tab_name, string work_dir, string[] command) {
+    Terminal term = null;
+
+    if (! terminals.has_key(tab_name)) {
+      term = new Terminal();
+      //term.child_exited.connect ( (t)=> { Gtk.main_quit(); } );
+      term.show();
+      notebook.append_page(term, new Label(tab_name));
+
+      terminals[tab_name] = term;
+    } else {
+      term = terminals[tab_name];
+    }
+
+    term.fork_command(null,null,null,null, true, true,true);
+    return 0;
   }
 
 }

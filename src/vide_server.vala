@@ -16,13 +16,28 @@
  ** Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
  */
 
-using Gtk;
-using Cairo;
-using Vte;
+using Vide;
 
-public class Vide.Worker {
+[DBus (name = "com.github.Vide")]
+public class Vide.Server : Object {
+  private static Server instance = null;
 
-  public Worker() {
+  private MainWindow window = null;
+
+  public static Server get_instance() {
+    if (instance == null) {
+      instance = new Server();
+    }
+    return instance;
+  }
+  
+  [DBus (visible = false)]
+  public MainWindow main_window {
+    get { return window; }
+    set { window = value; }
   }
 
+  public int execute(string tab_name, string work_dir, string[] command) {
+    return window.execute_tab(tab_name, work_dir, command);
+  }
 }
