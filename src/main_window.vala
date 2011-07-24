@@ -21,9 +21,15 @@ using Cairo;
 using Vte;
 using Gee;
 
+struct VideTerminal {
+  string name;
+  Terminal term;
+  int tab_number;
+}
+
 public class Vide.MainWindow: Window {
 
-  private HashMap<string, Terminal> terminals = new HashMap<string, Terminal>();
+  private HashMap<string, VideTerminal?> terminals = new HashMap<string, VideTerminal?>();
 
   private Notebook notebook;
 
@@ -37,7 +43,10 @@ public class Vide.MainWindow: Window {
     var toolbar = new Toolbar ();
     var combo = new MenuToolButton.from_stock(Stock.MEDIA_PLAY);
     combo.is_important = true;
-    //combo.clicked.connect(() => {});
+    combo.clicked.connect(() => {
+      string[] command = {"echo", "test"};
+      execute_tab("test", "/tmp", command);
+    });
     toolbar.add(combo);
     var quit_button = new ToolButton.from_stock(Stock.QUIT);
     quit_button.is_important = true;
@@ -51,21 +60,35 @@ public class Vide.MainWindow: Window {
   }
 
   public int execute_tab(string tab_name, string work_dir, string[] command) {
-    Terminal term = null;
+    var vterm = VideTerminal();
+    vterm.name = tab_name;
 
     if (! terminals.has_key(tab_name)) {
-      term = new Terminal();
-      //term.child_exited.connect ( (t)=> { Gtk.main_quit(); } );
-      term.show();
-      notebook.append_page(term, new Label(tab_name));
+      vterm.term = new Terminal();
+      vterm.term.child_exited.connect( (term) => {
+        close_tab(tab_name);
+      });
+      vterm.term.eof.connect( (term) => {
+        close_tab(tab_name);
+      });
+      vterm.term.show();
+      vterm.tab_number = notebook.append_page(vterm.term, new Label(tab_name));
 
-      terminals[tab_name] = term;
+      terminals[tab_name] = vterm;
     } else {
-      term = terminals[tab_name];
+      vterm = terminals[tab_name];
     }
 
-    term.fork_command(null,null,null,null, true, true,true);
+    vterm.term.fork_command( (string) 0, (string[]) 0, new string[]{}, Environment.get_variable( "HOME" ), true, true, true);
+    vterm.term.feed_child("echo test\n", 10);
+      
     return 0;
+  }
+
+  public void close_tab(string tab_name) {
+    var vterm = terminals[tab_name];
+    notebook.remove_page(vterm.tab_number);
+    terminals.remove(tab_name);
   }
 
 }
