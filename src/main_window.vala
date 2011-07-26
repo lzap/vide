@@ -44,8 +44,7 @@ public class Vide.MainWindow: Window {
     var combo = new MenuToolButton.from_stock(Stock.MEDIA_PLAY);
     combo.is_important = true;
     combo.clicked.connect(() => {
-      string[] command = {"echo", "test"};
-      execute_tab("test", "/tmp", command);
+      execute_tab("test", "echo test");
     });
     toolbar.add(combo);
     var quit_button = new ToolButton.from_stock(Stock.QUIT);
@@ -59,7 +58,7 @@ public class Vide.MainWindow: Window {
     add(vbox);
   }
 
-  public int execute_tab(string tab_name, string work_dir, string[] command) {
+  public int execute_tab(string tab_name, string command, string? work_dir = null) {
     var vterm = VideTerminal();
     vterm.name = tab_name;
 
@@ -79,8 +78,13 @@ public class Vide.MainWindow: Window {
       vterm = terminals[tab_name];
     }
 
-    vterm.term.fork_command( (string) 0, (string[]) 0, new string[]{}, Environment.get_variable( "HOME" ), true, true, true);
-    vterm.term.feed_child("echo test\n", 10);
+    // change to the tab
+    notebook.show_all();
+    notebook.set_current_page(vterm.tab_number);
+
+    string wd = work_dir ?? Environment.get_variable("HOME");
+    vterm.term.fork_command( (string) 0, (string[]) 0, new string[]{}, wd, true, true, true);
+    vterm.term.feed_child(command + "\n", command.length + 1);
       
     return 0;
   }

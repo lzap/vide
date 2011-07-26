@@ -1,2 +1,10 @@
 #!/bin/bash
-dbus-send --print-reply --dest=com.github.Vide /com/github/vide com.github.Vide.Execute string:test string:/tmp array:string:"one","two"
+dbus-send \
+  --print-reply \
+  --dest=com.github.Vide \
+  /com/github/vide \
+  com.github.Vide.Execute \
+  string:"$1" \
+  string:"${*:3}" \
+  string:"$2" \
+  >/dev/null

@@ -37,7 +37,7 @@ public class Vide.Server : Object {
     set { window = value; }
   }
 
-  public int execute(string tab_name, string work_dir, string[] command) {
-    return window.execute_tab(tab_name, work_dir, command);
+  public int execute(string tab_name, string command, string work_dir) {
+    return window.execute_tab(tab_name, command, work_dir);
   }
 }
