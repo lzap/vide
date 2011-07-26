@@ -7,20 +7,20 @@ A quick introduction
 
 Vim is the best text editor, I use it 10 hours a day. It has many features for developers, but it has quite poor external command execution. While it is possible to run external programs in xterm (or using start.exe on Windows) it would be nice to have integrated terminal for running external programs (Python, Perl, Ruby scripts, compilation scripts etc).
 
-Vide is very simple terminal that waits on DBUS and one can send commands to named tabs, like executing compilation scripts, programs or even debug things in the CLI. It's very easy to setup and use:
+Vide is very simple terminal that waits on DBUS. User is able to send commands (using videx command) to named tabs, like executing compilation scripts, programs or even debug things in the CLI. It's very easy to setup and use:
 
 1. Start vide.
 2. Start vim.
-3. Issue `:!vide-cmd tab_name command to execute`
+3. Issue `:!videx tab_name command to execute`
 
 Examples:
 
-    vide-cmd compile gcc -o hello *.c
-    vide-cmd unit_tests rake spec
-    vide-cmd start_gui python main_app_gui.py
-    vide-cmd run_webserver rails server
+    videx compile gcc -o hello *.c
+    videx unit_tests rake spec
+    videx start_gui python main_app_gui.py
+    videx run_webserver rails server
 
-The coolest thing is if you issue vide-cmd with the same tab name again. The old process is stopped and terminal is cleared.
+The coolest thing is if you issue videx with the same tab name again. The old process is stopped and terminal is cleared.
 
 System requirements
 -------------------
