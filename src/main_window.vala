@@ -36,6 +36,11 @@ public class Vide.MainWindow: Window {
   public MainWindow() {
     set_title(_("Vide Terminal"));
     set_default_size(800, 600);
+    try {
+      set_icon_from_file("/usr/share/pixmaps/gnome-term.png");
+    } catch (Error er) {
+      stderr.printf(er.message);
+    }
     this.destroy.connect(Gtk.main_quit);
 
     notebook = new Notebook();
@@ -63,6 +68,7 @@ public class Vide.MainWindow: Window {
     vterm.name = tab_name;
 
     if (! terminals.has_key(tab_name)) {
+      // new terminal
       vterm.term = new Terminal();
       vterm.term.child_exited.connect( (term) => {
         close_tab(tab_name);
@@ -70,12 +76,21 @@ public class Vide.MainWindow: Window {
       vterm.term.eof.connect( (term) => {
         close_tab(tab_name);
       });
+      // set history length
+      vterm.term.set_scrollback_lines(9999);
       vterm.term.show();
-      vterm.tab_number = notebook.append_page(vterm.term, new Label(tab_name));
+      // create scroller
+      var scroll = new ScrolledWindow (null, null);
+      scroll.set_policy(PolicyType.AUTOMATIC, PolicyType.ALWAYS);
+      scroll.add(vterm.term);
+      vterm.tab_number = notebook.append_page(scroll, new Label(tab_name));
 
       terminals[tab_name] = vterm;
     } else {
+      // existing terminal
       vterm = terminals[tab_name];
+      // clear history
+      vterm.term.reset(true, true);
     }
 
     // change to the tab
