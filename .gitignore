@@ -54,3 +54,4 @@ stamp-h1
 vapi/Makefile
 vapi/Makefile.in
 *~
+scripts/videx

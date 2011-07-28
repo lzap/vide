@@ -4,6 +4,7 @@ SUBDIRS = \
 	data \
 	src \
 	vapi \
+	scripts \
 	po
 
 EXTRA_DIST = \
