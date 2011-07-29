@@ -23,8 +23,11 @@ using Gee;
 
 struct VideTerminal {
   string name;
+  string command;
+  string work_dir;
   Terminal term;
   int tab_number;
+  bool has_menu;
 }
 
 public class Vide.MainWindow: Window {
@@ -32,6 +35,13 @@ public class Vide.MainWindow: Window {
   private HashMap<string, VideTerminal?> terminals = new HashMap<string, VideTerminal?>();
 
   private Notebook notebook;
+
+  private Menu menu;
+
+  private MenuToolButton execute_button;
+
+  // item selected in the menu (the "play" button)
+  private string selected = null;
 
   public MainWindow() {
     set_title(_("Vide Terminal"));
@@ -44,16 +54,24 @@ public class Vide.MainWindow: Window {
     this.destroy.connect(Gtk.main_quit);
 
     notebook = new Notebook();
+    menu = new Menu();
 
     var toolbar = new Toolbar ();
-    var combo = new MenuToolButton.from_stock(Stock.MEDIA_PLAY);
-    combo.is_important = true;
-    combo.clicked.connect(() => {
-      execute_tab("test", "echo test");
+    execute_button = new MenuToolButton.from_stock(Stock.MEDIA_PLAY);
+    execute_button.set_focus_on_click(false);
+    execute_button.set_label("use videx command");
+    execute_button.set_menu(menu);
+    execute_button.is_important = true;
+    execute_button.clicked.connect(() => {
+      if (selected != null) {
+        var vterm = terminals[selected];
+        execute_tab(vterm.name, vterm.command, vterm.work_dir);
+      }
     });
-    toolbar.add(combo);
+    toolbar.add(execute_button);
     var quit_button = new ToolButton.from_stock(Stock.QUIT);
     quit_button.is_important = true;
+    quit_button.set_focus_on_click(false);
     quit_button.clicked.connect(Gtk.main_quit);
     toolbar.add(quit_button);
 
@@ -63,9 +81,31 @@ public class Vide.MainWindow: Window {
     add(vbox);
   }
 
+  private void add_term(VideTerminal vterm) {
+    // create menu if there is not any
+    if (! vterm.has_menu) {
+      var menu_item = new MenuItem.with_label(vterm.name);
+      menu_item.activate.connect( (term) => {
+        select_term(vterm);
+      });
+      menu.append(menu_item);
+      menu.show_all();
+      vterm.has_menu = true;
+    }
+  }
+
+  private void select_term(VideTerminal vterm) {
+    // setup execute ("play") button
+    execute_button.set_label(vterm.name);
+    selected = vterm.name;
+  }
+
   public int execute_tab(string tab_name, string command, string? work_dir = null) {
     var vterm = VideTerminal();
     vterm.name = tab_name;
+    vterm.command = command;
+    vterm.work_dir = work_dir;
+    vterm.has_menu = false;
 
     if (! terminals.has_key(tab_name)) {
       // new terminal
@@ -92,6 +132,10 @@ public class Vide.MainWindow: Window {
       // clear history
       vterm.term.reset(true, true);
     }
+
+    // add to the the menu and select it
+    add_term(vterm);
+    select_term(vterm);
 
     // change to the tab
     notebook.show_all();
