@@ -15,7 +15,7 @@ Vim is the best text editor, I use it 10 hours a day. It has many features for d
 4. Bind this command to your favourite key (e.g. F5, F6, F7).
 5. Works with any other text editor.
 
-![vide screenshot](doc/screens/small_unit_test.png "Vide Terminal")
+![vide screenshot](/lzap/vide/raw/master/doc/screens/small_unit_test.png "Vide Terminal")
 
 ### Example use
 
