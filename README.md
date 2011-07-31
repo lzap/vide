@@ -1,13 +1,13 @@
 
-vide -- multiple-tabs terminal with DBUS support
-================================================
+vide: multiple-tabs terminal with DBUS support
+==============================================
 
 A quick introduction
 --------------------
 
 Vim is the best text editor, I use it 10 hours a day. It has many features for developers, but it has quite poor external command execution. While it is possible to run external programs in xterm (or using start.exe on Windows) it would be nice to have integrated terminal for running external programs (Python, Perl, Ruby scripts, compilation scripts etc).
 
-*Vide* is very simple terminal that waits on DBUS. User is able to send commands (using *videx* command) to named tabs, like executing compilation scripts, programs or even debug things in the CLI. It works like in your favourite IDE like Eclipse, Netbeans or IntelliJ IDEA. Vide is very easy to setup and use:
+**Vide** is very simple terminal that waits on DBUS. User is able to send commands (using **videx** command) to named tabs, like executing compilation scripts, programs or even debug things in the CLI. It works like in your favourite IDE like Eclipse, Netbeans or IntelliJ IDEA. Vide is very easy to setup and use:
 
 1. Start vide.
 2. Start vim.
@@ -25,6 +25,8 @@ Here are few examples.
     videx unit_tests /my/project rake spec
     videx start_gui /my/project python main_app_gui.py
     videx run_webserver /my/project rails server
+
+The **only way** to create tabs at the moment is via videx command. Once you send one videx command to your vide instance, new menu entry will be created. You can select from multiple commands using the dropdown menu and execute commands again using the start ("play") button. Very similar to traditional integrated development environments.
 
 The coolest thing is if you issue videx with the same tab name again. Vide won't create a new tab, but the old tab/term is stopped, terminal is cleared and the command is issued again.
 
