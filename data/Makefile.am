@@ -1,6 +1,6 @@
 # Makefile.am
 
-SUBDIRS = icons images
+SUBDIRS = icons
 
 desktopdir = $(datadir)/applications
 desktop_in_files = vide.desktop.in

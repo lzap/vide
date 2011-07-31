@@ -10,7 +10,8 @@ SUBDIRS = \
 EXTRA_DIST = \
 	intltool-extract.in \
 	intltool-merge.in \
-	intltool-update.in
+	intltool-update.in \
+	vide.spec
 
 DISTCLEANFILES = \
 	intltool-extract \

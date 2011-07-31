@@ -1,10 +1,12 @@
 # configure.ac
 
-AC_INIT([Vide],[0.1.1])
+# version is not used (using tito and overriding)
+AC_INIT([Vide],[999.9.9])
 AC_CONFIG_SRCDIR([src/vide.vala])
 AC_CONFIG_HEADERS([config.h])
 
-AM_INIT_AUTOMAKE([no-dist-gzip dist-bzip2])
+AM_INIT_AUTOMAKE
+#AM_INIT_AUTOMAKE([no-dist-gzip dist-bzip2])
 
 # Enable silent rules is available
 m4_ifdef([AM_SILENT_RULES], [AM_SILENT_RULES([yes])])
@@ -42,7 +44,6 @@ AC_CONFIG_FILES([
 	data/icons/32x32/Makefile
 	data/icons/48x48/Makefile
 	data/icons/scalable/Makefile
-	data/images/Makefile
 	po/Makefile.in
 	src/Makefile
 	vapi/Makefile
