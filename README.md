@@ -34,15 +34,22 @@ Vide has ordinary interactive terminals - you can do whatever you like. This is 
 
 Vide is nothing and everything. You either like it or hate it. I hope for the former.
 
+News about Vide
+---------------
+
+There is no dedicated home page for Vide. This page on Github is its "home", you can subscribe [my blog](http://lukas.zapletalovi.com) to be notified about news, releases and other related stuff.
+
 System requirements
 -------------------
 
-DBUS, GTK, VTE and Gee libraries to run it.
+DBUS, GTK, VTE and Gee libraries to run it. Most Linux distributions has all the dependencies.
 
-Vala compiler to compile it.
+Vala compiler to compile it. Only if you want to develop vide itself.
 
-How to use
-----------
+Downloading
+-----------
+
+I am currently working on RPM packages for Fedora Linux. The easiest way to get Vide is to compile it. It's very easy, read the following chapter.
 
 Development setup
 -----------------
@@ -51,7 +58,7 @@ Install all required libraries and their devel versions. Then:
 
     git clone git://github.com/lzap/vide.git
     cd vide
-    ./autogen.sh --prefix=/tmp/vide_devel
+    ./autogen.sh --prefix=/tmp/my_path/to/vide
     make install
 
 The last step installs data files in the /tmp dir. Now you can code, hack, compile and run with:
