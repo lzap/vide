@@ -74,5 +74,5 @@ gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
 
 
 %changelog
-* Sun Jul 31 2011 Lukas Zapletal <lzap+rpm[@]redhat.com> - 0.1.1-1
+* Sun Jul 31 2011 Lukas Zapletal 0.1.1-1
 - initial version
