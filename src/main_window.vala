@@ -58,10 +58,10 @@ public class Vide.MainWindow: Window {
 
     var toolbar = new Toolbar ();
     execute_button = new MenuToolButton.from_stock(Stock.MEDIA_PLAY);
-    execute_button.set_focus_on_click(false);
     execute_button.set_label("use videx command");
     execute_button.set_menu(menu);
     execute_button.is_important = true;
+    execute_button.set_can_focus(false);
     execute_button.clicked.connect(() => {
       if (selected != null) {
         var vterm = terminals[selected];
@@ -71,7 +71,7 @@ public class Vide.MainWindow: Window {
     toolbar.add(execute_button);
     var quit_button = new ToolButton.from_stock(Stock.QUIT);
     quit_button.is_important = true;
-    quit_button.set_focus_on_click(false);
+    quit_button.set_can_focus(false);
     quit_button.clicked.connect(Gtk.main_quit);
     toolbar.add(quit_button);
 
