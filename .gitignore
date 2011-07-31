@@ -55,3 +55,4 @@ vapi/Makefile
 vapi/Makefile.in
 *~
 scripts/videx
+*.tar.bz2

@@ -1,6 +1,6 @@
 # configure.ac
 
-AC_INIT([Vide],[0.1])
+AC_INIT([Vide],[0.1.1])
 AC_CONFIG_SRCDIR([src/vide.vala])
 AC_CONFIG_HEADERS([config.h])
 

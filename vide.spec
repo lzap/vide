@@ -6,7 +6,7 @@ Summary:        Multiple-tabs terminal with DBUS support
 Group:          Development/Tools
 License:        GPLv3+
 URL:            https://github.com/lzap/vide
-Source0:        %{name}-%{version}.tar.gz
+Source0:        %{name}-%{version}.tar.bz2
 
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
@@ -64,10 +64,9 @@ gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
 
 %files -f %{name}.lang
 %defattr(-,root,root,-)
-%doc AUTHORS COPYING INSTALL
+%doc AUTHORS COPYING INSTALL README
 %{_bindir}/%{name}
 %{_bindir}/%{name}x
-%{_libdir}/%{name}
 #%{_datadir}/%{name}/
 %{_datadir}/icons/hicolor/*/apps/%{name}.*
 %{_datadir}/applications/%{name}.desktop

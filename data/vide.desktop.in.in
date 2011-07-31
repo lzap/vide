@@ -7,5 +7,5 @@ _Comment=Terminal with tabs and DBUS support
 Exec=vide
 Icon=vide
 Terminal=false
-Categories=Programming
+Categories=Development
 StartupNotify=true
