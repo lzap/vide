@@ -1,5 +1,5 @@
 Name:           vide
-Version:        0.1.1
+Version:        0.1.2
 Release:        1%{?dist}
 Summary:        Multiple-tabs terminal with DBUS support
 
@@ -73,5 +73,10 @@ gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
 
 
 %changelog
+* Mon Aug 01 2011 Lukas Zapletal <lzap+git@redhat.com> 0.1.2-1
+- got tito working with autotools
+- getting spec working
+- add dummy README
+
 * Sun Jul 31 2011 Lukas Zapletal 0.1.1-1
 - initial version
