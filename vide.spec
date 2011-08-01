@@ -10,10 +10,14 @@ Source0:        %{name}-%{version}.tar.bz2
 
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
-Requires:       gtk2
+Requires:       dbus
 
-BuildRequires:  glib2-devel gtk2-devel
-BuildRequires:  desktop-file-utils
+BuildRequires:  gettext desktop-file-utils
+BuildRequires:  vala-devel >= 0.12
+BuildRequires:  pkgconfig(gtk+-2.0)
+BuildRequires:  pkgconfig(vte)
+BuildRequires:  pkgconfig(gee-1.0)
+BuildRequires:  pkgconfig(gio-2.0)
 
 
 %description
