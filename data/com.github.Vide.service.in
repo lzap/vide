@@ -1,0 +1,4 @@
+[D-BUS Service]
+Name=com.github.Vide
+Exec=@prefix@/bin/vide
+
