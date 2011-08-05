@@ -32,10 +32,22 @@ AC_SUBST(GETTEXT_PACKAGE)
 AM_GNU_GETTEXT_VERSION([1.11])
 AM_GLIB_GNU_GETTEXT
 
+
+AS_AC_EXPAND(DATADIR, $datadir)
+AC_ARG_WITH(dbus-services, [  --with-dbus-services=<dir>   where D-BUS services directory is])
+if ! test -z "$with_dbus_services" ; then
+	DBUS_SERVICES_DIR="$with_dbus_services"
+else
+	DBUS_SERVICES_DIR="$DATADIR/dbus-1/services"
+fi
+AC_SUBST(DBUS_SERVICES_DIR)
+AC_DEFINE_UNQUOTED(DBUS_SERVICES_DIR, "$DBUS_SERVICES_DIR", [Where services dir for DBUS is])
+
 AC_CONFIG_FILES([
 	Makefile
-  scripts/Makefile
+  	scripts/Makefile
 	data/vide.desktop.in
+	data/com.github.Vide.service
 	data/Makefile
 	data/icons/Makefile
 	data/icons/16x16/Makefile
