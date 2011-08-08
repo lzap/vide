@@ -3,6 +3,7 @@ bin_PROGRAMS = vide
 vide_SOURCES = \
 	vide.vala \
 	vide_server.vala \
+	keybinding.vala \
 	main_window.vala
 
 INCLUDES = \

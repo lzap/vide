@@ -43,6 +43,8 @@ public class Vide.MainWindow: Window {
   // item selected in the menu (the "play" button)
   private string selected = null;
 
+  private KeyBindingManager keybinding;
+
   public MainWindow() {
     set_title(_("Vide Terminal"));
     set_default_size(800, 600);
@@ -52,6 +54,22 @@ public class Vide.MainWindow: Window {
       stderr.printf(er.message);
     }
     this.destroy.connect(Gtk.main_quit);
+
+    this.keybinding = new KeyBindingManager(this);
+    this.keybinding.bind("<Ctrl>Page_Up",(event) => {
+      if (notebook.get_current_page() == 0) {
+        notebook.set_current_page(notebook.get_n_pages() - 1);
+      } else {
+        notebook.prev_page();
+      }
+    });
+    this.keybinding.bind("<Ctrl>Page_Down",(event) => {
+      if (notebook.get_current_page() == (notebook.get_n_pages() - 1)) {
+        notebook.set_current_page(0);
+      } else {
+        notebook.next_page();
+      }
+    });
 
     notebook = new Notebook();
     menu = new Menu();
