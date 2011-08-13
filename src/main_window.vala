@@ -39,7 +39,7 @@ public class Vide.MainWindow: Window {
   private Menu menu;
 
   private MenuToolButton execute_button;
-
+  private const string execute_button_label = "use videx command";
   // item selected in the menu (the "play" button)
   private string selected = null;
 
@@ -76,7 +76,7 @@ public class Vide.MainWindow: Window {
 
     var toolbar = new Toolbar ();
     execute_button = new MenuToolButton.from_stock(Stock.MEDIA_PLAY);
-    execute_button.set_label("use videx command");
+    execute_button.set_label(execute_button_label);
     execute_button.set_menu(menu);
     execute_button.is_important = true;
     execute_button.set_can_focus(false);
@@ -171,6 +171,10 @@ public class Vide.MainWindow: Window {
   public void close_tab(string tab_name) {
     VideTerminal vterm;
     terminals.unset(tab_name, out vterm);
+    if (terminals.is_empty) {
+      selected = null;
+      execute_button.set_label(execute_button_label);
+    }
     notebook.remove_page(vterm.tab_number);
     menu.remove(vterm.menu);
   }
