@@ -117,6 +117,26 @@ public class Vide.MainWindow: Window {
     selected = vterm.name;
   }
 
+  private Widget create_tab_header(string tab_name) {
+      var hbox = new HBox(false,0);
+      hbox.pack_start(new Label(tab_name));
+      var close_btn = new Button();
+      close_btn.set_relief(Gtk.ReliefStyle.NONE);
+      close_btn.set_focus_on_click(false);
+      close_btn.name = tab_name;
+      var style = new RcStyle();
+      style.xthickness = 0;
+      style.ythickness = 0;
+      close_btn.modify_style(style);
+      close_btn.clicked.connect((widget) => {
+	close_tab(widget.name);
+      });
+      close_btn.add(new Image.from_stock(Stock.CLOSE,Gtk.IconSize.MENU));
+      hbox.pack_start(close_btn,false,false);
+      hbox.show_all();
+      return hbox;
+  }
+
   public int execute_tab(string tab_name, string command, string? work_dir = null) {
     var vterm = new VideTerminal();
     vterm.name = tab_name;
@@ -139,7 +159,7 @@ public class Vide.MainWindow: Window {
       var scroll = new ScrolledWindow (null, null);
       scroll.set_policy(PolicyType.AUTOMATIC, PolicyType.ALWAYS);
       scroll.add(vterm.term);
-      vterm.tab_number = notebook.append_page(scroll, new Label(tab_name));
+      vterm.tab_number = notebook.append_page(scroll, create_tab_header(tab_name));
 
       terminals[tab_name] = vterm;
     } else {
