@@ -21,13 +21,13 @@ using Cairo;
 using Vte;
 using Gee;
 
-struct VideTerminal {
-  string name;
-  string command;
-  string work_dir;
-  Terminal term;
-  int tab_number;
-  bool has_menu;
+class VideTerminal {
+  public string name {get;set;}
+  public string command {get;set;}
+  public string work_dir {get;set;}
+  public Terminal term {get;set;}
+  public int tab_number {get;set;}
+  public MenuItem menu {get;set;}
 }
 
 public class Vide.MainWindow: Window {
@@ -101,14 +101,13 @@ public class Vide.MainWindow: Window {
 
   private void add_term(VideTerminal vterm) {
     // create menu if there is not any
-    if (! vterm.has_menu) {
-      var menu_item = new MenuItem.with_label(vterm.name);
-      menu_item.activate.connect( (term) => {
+    if (vterm.menu == null) {
+      vterm.menu = new MenuItem.with_label(vterm.name);
+      vterm.menu.activate.connect( (term) => {
         select_term(vterm);
       });
-      menu.append(menu_item);
+      menu.append(vterm.menu);
       menu.show_all();
-      vterm.has_menu = true;
     }
   }
 
@@ -119,11 +118,10 @@ public class Vide.MainWindow: Window {
   }
 
   public int execute_tab(string tab_name, string command, string? work_dir = null) {
-    var vterm = VideTerminal();
+    var vterm = new VideTerminal();
     vterm.name = tab_name;
     vterm.command = command;
     vterm.work_dir = work_dir;
-    vterm.has_menu = false;
 
     if (! terminals.has_key(tab_name)) {
       // new terminal
@@ -149,6 +147,9 @@ public class Vide.MainWindow: Window {
       vterm = terminals[tab_name];
       // clear history
       vterm.term.reset(true, true);
+      // assign new params
+      vterm.command = command;
+      vterm.work_dir = work_dir;
     }
 
     // add to the the menu and select it
@@ -159,17 +160,19 @@ public class Vide.MainWindow: Window {
     notebook.show_all();
     notebook.set_current_page(vterm.tab_number);
 
-    string wd = work_dir ?? Environment.get_variable("HOME");
+    // execute command
+    string wd = vterm.work_dir ?? Environment.get_variable("HOME");
     vterm.term.fork_command( (string) 0, (string[]) 0, new string[]{}, wd, true, true, true);
-    vterm.term.feed_child(command + "\n", command.length + 1);
+    vterm.term.feed_child(vterm.command + "\n", vterm.command.length + 1);
       
     return 0;
   }
 
   public void close_tab(string tab_name) {
-    var vterm = terminals[tab_name];
+    VideTerminal vterm;
+    terminals.unset(tab_name, out vterm);
     notebook.remove_page(vterm.tab_number);
-    terminals.remove(tab_name);
+    menu.remove(vterm.menu);
   }
 
 }
