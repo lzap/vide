@@ -1,5 +1,5 @@
 Name:           vide
-Version:        0.1.3
+Version:        0.1.4
 Release:        1%{?dist}
 Summary:        Multiple-tabs terminal with DBUS support
 
@@ -77,6 +77,14 @@ gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
 
 
 %changelog
+* Tue Aug 16 2011 Lukas Zapletal <lzap+git@redhat.com> 0.1.4-1
+- added close button to terminal tab
+- reset execute button to initial state when last tab is closed
+- menu items are no longer duplicated, menuItem is removed from menu on tab
+  close
+- added: Ctrl+PageUP/PageDown accells for switching tabs
+- added D-BUS service file
+
 * Mon Aug 01 2011 Lukas Zapletal <lzap+git@redhat.com> 0.1.3-1
 - spec - requires
 
