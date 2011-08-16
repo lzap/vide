@@ -74,6 +74,7 @@ gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
 #%{_datadir}/%{name}/
 %{_datadir}/icons/hicolor/*/apps/%{name}.*
 %{_datadir}/applications/%{name}.desktop
+%{_datadir}/dbus-1/services/com.github.Vide.service
 
 
 %changelog

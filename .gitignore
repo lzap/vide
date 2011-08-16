@@ -29,6 +29,7 @@ data/images/Makefile
 data/images/Makefile.in
 data/vide.desktop
 data/vide.desktop.in
+data/com.github.Vide.service
 depcomp
 install-sh
 intltool-extract.in
