@@ -1,5 +1,5 @@
 Name:           vide
-Version:        0.1.4
+Version:        0.1.5
 Release:        1%{?dist}
 Summary:        Multiple-tabs terminal with DBUS support
 
@@ -78,6 +78,13 @@ gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
 
 
 %changelog
+* Thu Oct 06 2011 Lukas Zapletal <lzap+git@redhat.com> 0.1.5-1
+- properly terminate all terms and wait for exit of all
+- return pid of the process rather than zero
+- set focus to the term when created
+- reformatting
+- adding new file to the RPM
+
 * Tue Aug 16 2011 Lukas Zapletal <lzap+git@redhat.com> 0.1.4-1
 - added close button to terminal tab
 - reset execute button to initial state when last tab is closed
