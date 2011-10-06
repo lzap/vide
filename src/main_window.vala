@@ -72,6 +72,7 @@ public class Vide.MainWindow: Window {
     });
 
     notebook = new Notebook();
+    set_default(notebook);
     menu = new Menu();
 
     var toolbar = new Toolbar ();
@@ -179,6 +180,7 @@ public class Vide.MainWindow: Window {
     // change to the tab
     notebook.show_all();
     notebook.set_current_page(vterm.tab_number);
+    set_focus(vterm.term);
 
     // execute command
     string wd = vterm.work_dir ?? Environment.get_variable("HOME");
