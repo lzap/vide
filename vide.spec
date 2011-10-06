@@ -1,5 +1,5 @@
 Name:           vide
-Version:        0.1.5
+Version:        0.1.6
 Release:        1%{?dist}
 Summary:        Multiple-tabs terminal with DBUS support
 
@@ -78,6 +78,10 @@ gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
 
 
 %changelog
+* Thu Oct 06 2011 Lukas Zapletal <lzap+git@redhat.com> 0.1.6-1
+- README update
+- fixing tarball name in our spec
+
 * Thu Oct 06 2011 Lukas Zapletal <lzap+git@redhat.com> 0.1.5-1
 - properly terminate all terms and wait for exit of all
 - return pid of the process rather than zero
