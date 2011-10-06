@@ -51,6 +51,15 @@ Downloading
 
 I am currently working on RPM packages for Fedora Linux. The easiest way to get Vide is to compile it. It's very easy, read the following chapter.
 
+Compiling
+---------
+
+Tarball release (for compilation) are located at: http://lzap.fedorapeople.org/projects/vide/releases/
+
+To compile and install Vide into /usr/local just do the following:
+
+    ./configure && make install
+
 Development setup
 -----------------
 

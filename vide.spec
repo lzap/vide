@@ -23,7 +23,7 @@ BuildRequires:  pkgconfig(gio-2.0)
 %description
 Vide is very simple terminal that waits on DBUS. User is able to send commands
 (using videx command) to named tabs, like executing compilation scripts,
-programs or even debug things in the CLI. It works like in your favourite IDE
+programs or even debug things in the CLI. It works like in your favorite IDE
 like Eclipse, Netbeans or IntelliJ IDEA.
 
 
@@ -71,7 +71,6 @@ gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
 %doc AUTHORS COPYING INSTALL README
 %{_bindir}/%{name}
 %{_bindir}/%{name}x
-#%{_datadir}/%{name}/
 %{_datadir}/icons/hicolor/*/apps/%{name}.*
 %{_datadir}/applications/%{name}.desktop
 %{_datadir}/dbus-1/services/com.github.Vide.service
