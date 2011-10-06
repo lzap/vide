@@ -6,7 +6,7 @@ Summary:        Multiple-tabs terminal with DBUS support
 Group:          Development/Tools
 License:        GPLv3+
 URL:            https://github.com/lzap/vide
-Source0:        %{name}-%{version}.tar.bz2
+Source0:        %{name}-%{version}.tar.gz
 
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
