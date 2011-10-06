@@ -24,6 +24,7 @@ using Gee;
 class VideTerminal {
   public string name {get;set;}
   public string command {get;set;}
+  public int pid {get;set;}
   public string work_dir {get;set;}
   public Terminal term {get;set;}
   public int tab_number {get;set;}
@@ -184,10 +185,11 @@ public class Vide.MainWindow: Window {
 
     // execute command
     string wd = vterm.work_dir ?? Environment.get_variable("HOME");
-    vterm.term.fork_command( (string) 0, (string[]) 0, new string[]{}, wd, true, true, true);
-    vterm.term.feed_child(vterm.command + "\n", vterm.command.length + 1);
+    vterm.pid = vterm.term.fork_command( (string) 0, (string[]) 0, new string[]{}, wd, true, true, true);
+    if (vterm.pid != -1)
+      vterm.term.feed_child(vterm.command + "\n", vterm.command.length + 1);
       
-    return 0;
+    return vterm.pid;
   }
 
   public void close_tab(string tab_name) {
