@@ -12,7 +12,7 @@ BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 Requires:       dbus
 
-BuildRequires:  gettext desktop-file-utils
+BuildRequires:  intltool gettext desktop-file-utils
 BuildRequires:  vala-devel >= 0.12
 BuildRequires:  pkgconfig(gtk+-2.0)
 BuildRequires:  pkgconfig(vte)
