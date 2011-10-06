@@ -20,6 +20,7 @@ using Gtk;
 using Cairo;
 using Vte;
 using Gee;
+using Posix;
 
 class VideTerminal {
   public string name {get;set;}
@@ -52,9 +53,9 @@ public class Vide.MainWindow: Window {
     try {
       set_icon_from_file("/usr/share/pixmaps/gnome-term.png");
     } catch (Error er) {
-      stderr.printf(er.message);
+      GLib.stderr.printf(er.message);
     }
-    this.destroy.connect(Gtk.main_quit);
+    this.destroy.connect(on_quit);
 
     this.keybinding = new KeyBindingManager(this);
     this.keybinding.bind("<Ctrl>Page_Up",(event) => {
@@ -92,13 +93,34 @@ public class Vide.MainWindow: Window {
     var quit_button = new ToolButton.from_stock(Stock.QUIT);
     quit_button.is_important = true;
     quit_button.set_can_focus(false);
-    quit_button.clicked.connect(Gtk.main_quit);
+    quit_button.clicked.connect(on_quit);
     toolbar.add(quit_button);
-
     var vbox = new VBox(false, 0);
     vbox.pack_start(toolbar, false, true, 0);
     vbox.pack_start(notebook, true, true, 0);
     add(vbox);
+  }
+
+  int posix_wexitstatus(int status) {
+    return (((status) & 0xff00) >> 8);
+  }
+
+  private void on_quit() {
+    // stop all processes first
+    foreach (VideTerminal? term in terminals.values) {
+      Posix.kill(term.pid, SIGTERM);
+    }
+    // and wait for all to stop
+    foreach (VideTerminal? term in terminals.values) {
+      int child_status = 0;
+      int ret_waitpid = Posix.waitpid(term.pid, out child_status, 0);
+      if (ret_waitpid < 0) {
+        GLib.stderr.printf("waitpid returned error code: %d", ret_waitpid);
+      } else if (0 != posix_wexitstatus(child_status)) {
+        GLib.stderr.printf("process exited with error code: %d", posix_wexitstatus(child_status));
+      }
+    }
+    Gtk.main_quit();
   }
 
   private void add_term(VideTerminal vterm) {

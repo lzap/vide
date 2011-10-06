@@ -1,5 +1,6 @@
 #!/bin/bash
-(make && src/vide &)
+make || exit 1
+src/vide &
 for i in {1..8}
 do
   sleep 1s

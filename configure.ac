@@ -20,7 +20,7 @@ AC_PROG_INSTALL
 IT_PROG_INTLTOOL([0.35])
 
 pkg_modules="gtk+-2.0 >= 2.14.0 vte >= 0.28.0 gee-1.0 >= 0.6.1 gio-2.0 >= 2.28.0"
-VIDE_PACKAGES="--pkg gtk+-2.0 --pkg vte --pkg gee-1.0 --pkg gio-2.0"
+VIDE_PACKAGES="--pkg gtk+-2.0 --pkg vte --pkg gee-1.0 --pkg gio-2.0 --pkg posix"
 PKG_CHECK_MODULES(VIDE, [$pkg_modules])
 AC_SUBST(VIDE_CFLAGS)
 AC_SUBST(VIDE_LIBS)
