@@ -67,4 +67,11 @@ The last step installs data files in the /tmp dir. Now you can code, hack, compi
 
 I am looking forward your patches!
 
+How to make an RPM for Fedora
+
+Fedora is our target and supported distribution. It is very easy to create an RPM from the latest git tag:
+
+    yum -y install tito
+    tito build --rpm
+
 <!-- vim:se syn=markdown:sw=4:ts=4:et: -->
