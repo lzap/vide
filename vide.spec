@@ -1,7 +1,7 @@
 Name:           vide
 Version:        0.1.8
 Release:        1%{?dist}
-Summary:        Multiple-tabs terminal with DBUS support
+Summary:        Multiple-tabs programmer's terminal for vim
 
 Group:          Development/Tools
 License:        GPLv3+

@@ -54,7 +54,7 @@ I am currently working on RPM packages for Fedora Linux. The easiest way to get 
 Compiling
 ---------
 
-Tarball release (for compilation) are located at: http://lzap.fedorapeople.org/projects/vide/releases/
+Tarball releases are located at: http://lzap.fedorapeople.org/projects/vide/releases/
 
 To compile and install Vide into /usr/local just do the following:
 
