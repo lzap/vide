@@ -30,6 +30,7 @@ public class Vide.VideTerminal {
   public Terminal term {get;set;}
   public int tab_number {get;set;}
   public MenuItem menu {get;set;}
+  public bool run_on_startup {get;set;}
 }
 
 public class Vide.MainWindow: Window {

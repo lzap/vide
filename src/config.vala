@@ -53,7 +53,12 @@ public class Vide.VideConfig {
 		debug("Loading terminals\n");
 		foreach (VideTerminal term in getRecentProject().terminals.values) {
 			debug("Creating terminal: "+term.name+" "+term.command+" "+term.work_dir+"\n");
-			win.create_tab(term.name,term.command,term.work_dir);
+			if (term.run_on_startup) {
+				win.execute_tab(term.name,term.command,term.work_dir);
+			}
+			else {
+				win.create_tab(term.name,term.command,term.work_dir);
+			}
 		}
 	}
 
@@ -98,6 +103,7 @@ public class Vide.VideConfig {
 		foreach (VideTerminal term in vp.terminals.values) {
 			gc.set_string(root+"/projects/"+vp.name+"/"+term.name+"/command",term.command);
 			gc.set_string(root+"/projects/"+vp.name+"/"+term.name+"/workdir",term.work_dir);
+			gc.set_bool(root+"/projects/"+vp.name+"/"+term.name+"/startup",term.run_on_startup);
 		}
 	}
 	private string getLeaf(string path) {
@@ -133,6 +139,9 @@ public class Vide.VideConfig {
 					}
 					if (key == "workdir") {
 						vt.work_dir = entry.get_value().get_string();
+					}
+					if (key == "startup") {
+						vt.run_on_startup = entry.get_value().get_bool();
 					}
 				}
 				if (vt.command != null) {
