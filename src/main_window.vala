@@ -52,7 +52,7 @@ public class Vide.MainWindow: Window {
     set_title(_("Vide Terminal"));
     set_default_size(800, 600);
     try {
-      set_icon_from_file("/usr/share/pixmaps/gnome-term.png");
+      set_icon_from_file(Config.DATADIR + "/icons/hicolor/48x48/apps/vide.png");
     } catch (Error er) {
       GLib.stderr.printf(er.message);
     }

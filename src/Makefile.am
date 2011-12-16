@@ -18,5 +18,8 @@ VALAFLAGS = \
 	--vapidir=$(srcdir)/../vapi --pkg config \
 	@VIDE_PACKAGES@
 
+AM_CPPFLAGS = \
+	-DDATADIR=\"$(datadir)\"
+
 vide_LDADD = \
 	$(VIDE_LIBS)
