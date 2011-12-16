@@ -4,6 +4,7 @@ vide_SOURCES = \
 	vide.vala \
 	vide_server.vala \
 	keybinding.vala \
+	config.vala \
 	main_window.vala
 
 INCLUDES = \

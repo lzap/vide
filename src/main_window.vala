@@ -22,7 +22,7 @@ using Vte;
 using Gee;
 using Posix;
 
-class VideTerminal {
+public class Vide.VideTerminal {
   public string name {get;set;}
   public string command {get;set;}
   public int pid {get;set;}
@@ -46,7 +46,7 @@ public class Vide.MainWindow: Window {
   private string selected = null;
 
   private KeyBindingManager keybinding;
-
+  private VideConfig config;
   public MainWindow() {
     set_title(_("Vide Terminal"));
     set_default_size(800, 600);
@@ -72,7 +72,7 @@ public class Vide.MainWindow: Window {
         notebook.next_page();
       }
     });
-
+    this.config = new VideConfig();
     notebook = new Notebook();
     set_default(notebook);
     menu = new Menu();
@@ -99,6 +99,7 @@ public class Vide.MainWindow: Window {
     vbox.pack_start(toolbar, false, true, 0);
     vbox.pack_start(notebook, true, true, 0);
     add(vbox);
+    this.config.loadRecent(this);
   }
 
   int posix_wexitstatus(int status) {
@@ -106,6 +107,7 @@ public class Vide.MainWindow: Window {
   }
 
   private void on_quit() {
+    this.config.save(terminals);
     // stop all processes first
     foreach (VideTerminal? term in terminals.values) {
       Posix.kill(term.pid, SIGTERM);
@@ -161,7 +163,7 @@ public class Vide.MainWindow: Window {
     return hbox;
   }
 
-  public int execute_tab(string tab_name, string command, string? work_dir = null) {
+  public VideTerminal create_tab(string tab_name, string command, string? work_dir = null) {
     var vterm = new VideTerminal();
     vterm.name = tab_name;
     vterm.command = command;
@@ -204,7 +206,11 @@ public class Vide.MainWindow: Window {
     notebook.show_all();
     notebook.set_current_page(vterm.tab_number);
     set_focus(vterm.term);
+    return vterm;
+  }
 
+  public int execute_tab(string tab_name, string command, string? work_dir = null) {
+    VideTerminal vterm = create_tab(tab_name,command,work_dir);
     // execute command
     string wd = vterm.work_dir ?? Environment.get_variable("HOME");
     vterm.pid = vterm.term.fork_command( (string) 0, (string[]) 0, new string[]{}, wd, true, true, true);
