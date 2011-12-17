@@ -164,11 +164,12 @@ public class Vide.MainWindow: Window {
     return hbox;
   }
 
-  public VideTerminal create_tab(string tab_name, string command, string? work_dir = null) {
+  public VideTerminal create_tab(string tab_name, string command, string? work_dir = null,bool run_on_startup = false) {
     var vterm = new VideTerminal();
     vterm.name = tab_name;
     vterm.command = command;
     vterm.work_dir = work_dir;
+    vterm.run_on_startup = run_on_startup;
 
     if (! terminals.has_key(tab_name)) {
       // new terminal
@@ -210,8 +211,8 @@ public class Vide.MainWindow: Window {
     return vterm;
   }
 
-  public int execute_tab(string tab_name, string command, string? work_dir = null) {
-    VideTerminal vterm = create_tab(tab_name,command,work_dir);
+  public int execute_tab(string tab_name, string command, string? work_dir = null, bool run_on_startup=false) {
+    VideTerminal vterm = create_tab(tab_name,command,work_dir,run_on_startup);
     // execute command
     string wd = vterm.work_dir ?? Environment.get_variable("HOME");
     vterm.pid = vterm.term.fork_command( (string) 0, (string[]) 0, new string[]{}, wd, true, true, true);

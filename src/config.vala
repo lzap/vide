@@ -54,10 +54,10 @@ public class Vide.VideConfig {
 		foreach (VideTerminal term in getRecentProject().terminals.values) {
 			debug("Creating terminal: "+term.name+" "+term.command+" "+term.work_dir+"\n");
 			if (term.run_on_startup) {
-				win.execute_tab(term.name,term.command,term.work_dir);
+				win.execute_tab(term.name,term.command,term.work_dir,term.run_on_startup);
 			}
 			else {
-				win.create_tab(term.name,term.command,term.work_dir);
+				win.create_tab(term.name,term.command,term.work_dir,term.run_on_startup);
 			}
 		}
 	}
