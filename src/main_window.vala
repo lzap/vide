@@ -125,6 +125,8 @@ public class Vide.MainWindow: Window {
     foreach (VideTerminal? term in terminals.values) {
       Posix.kill(term.pid, SIGTERM);
     }
+
+    /*
     // and wait for all to stop
     foreach (VideTerminal? term in terminals.values) {
       int child_status = 0;
@@ -135,6 +137,7 @@ public class Vide.MainWindow: Window {
         GLib.stderr.printf("process exited with error code: %d", posix_wexitstatus(child_status));
       }
     }
+    */
     Gtk.main_quit();
   }
 
