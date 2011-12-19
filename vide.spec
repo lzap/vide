@@ -1,5 +1,5 @@
 Name:           vide
-Version:        0.1.9
+Version:        0.1.10
 Release:        1%{?dist}
 Summary:        Multiple-tabs programmer's terminal for vim
 
@@ -78,6 +78,9 @@ gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
 
 
 %changelog
+* Mon Dec 19 2011 Lukas Zapletal <lzap+git@redhat.com> 0.1.10-1
+- adding vide-last to the spec file
+
 * Mon Dec 19 2011 Lukas Zapletal <lzap+git@redhat.com> 0.1.9-1
 - disabling quit pid waiting (does not work well)
 - introducing videx-last command - reexecutes the last command
