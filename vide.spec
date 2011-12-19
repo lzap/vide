@@ -71,7 +71,7 @@ gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
 %doc AUTHORS COPYING INSTALL README
 %{_bindir}/%{name}
 %{_bindir}/%{name}x
-%{_bindir}/%{name}-last
+%{_bindir}/%{name}x-last
 %{_datadir}/icons/hicolor/*/apps/%{name}.*
 %{_datadir}/applications/%{name}.desktop
 %{_datadir}/dbus-1/services/com.github.Vide.service
