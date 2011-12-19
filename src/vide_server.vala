@@ -40,4 +40,8 @@ public class Vide.Server : Object {
   public int execute(string tab_name, string command, string work_dir) {
     return window.execute_tab(tab_name, command, work_dir);
   }
+
+  public int reexecute() {
+    return window.execute_selected();
+  }
 }
