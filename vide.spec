@@ -1,5 +1,5 @@
 Name:           vide
-Version:        0.1.8
+Version:        0.1.9
 Release:        1%{?dist}
 Summary:        Multiple-tabs programmer's terminal for vim
 
@@ -77,6 +77,20 @@ gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
 
 
 %changelog
+* Mon Dec 19 2011 Lukas Zapletal <lzap+git@redhat.com> 0.1.9-1
+- disabling quit pid waiting (does not work well)
+- introducing videx-last command - reexecutes the last command
+- execute_selected returns integer (for dbus)
+- introducing reexecute dbus method
+- refactoring - introduce method execute_selected
+- reformatting
+- icon loading plus some code reformatting
+- fixed: run_on_startup terminals did not save settings correctly
+- saved terminal can be now also executed when vide starts up
+- vide now remembers all open terminals during shutdown and creates them during
+  startup
+- fixing spec summary and url in readme
+
 * Thu Oct 06 2011 Lukas Zapletal <lzap+git@redhat.com> 0.1.8-1
 - adding proper URL to the spec
 - release script, typos, readme
