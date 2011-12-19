@@ -42,12 +42,16 @@ public class Vide.MainWindow: Window {
   private Menu menu;
 
   private MenuToolButton execute_button;
+
   private const string execute_button_label = "use videx command";
+
   // item selected in the menu (the "play" button)
   private string selected = null;
 
   private KeyBindingManager keybinding;
+
   private VideConfig config;
+
   public MainWindow() {
     set_title(_("Vide Terminal"));
     set_default_size(800, 600);
