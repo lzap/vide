@@ -88,12 +88,7 @@ public class Vide.MainWindow: Window {
     execute_button.set_menu(menu);
     execute_button.is_important = true;
     execute_button.set_can_focus(false);
-    execute_button.clicked.connect(() => {
-      if (selected != null) {
-        var vterm = terminals[selected];
-        execute_tab(vterm.name, vterm.command, vterm.work_dir);
-      }
-    });
+    execute_button.clicked.connect(execute_selected);
     toolbar.add(execute_button);
     var quit_button = new ToolButton.from_stock(Stock.QUIT);
     quit_button.is_important = true;
@@ -109,6 +104,14 @@ public class Vide.MainWindow: Window {
 
   int posix_wexitstatus(int status) {
     return (((status) & 0xff00) >> 8);
+  }
+
+  // execute last selected tab again
+  public void execute_selected() {
+    if (selected != null) {
+      var vterm = terminals[selected];
+      execute_tab(vterm.name, vterm.command, vterm.work_dir);
+    }
   }
 
   private void on_quit() {
