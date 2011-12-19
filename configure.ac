@@ -61,5 +61,6 @@ AC_CONFIG_FILES([
 ])
 
 AC_CONFIG_FILES([scripts/videx], [chmod +x scripts/videx])
+AC_CONFIG_FILES([scripts/videx-last], [chmod +x scripts/videx-last])
 
 AC_OUTPUT

@@ -56,5 +56,6 @@ vapi/Makefile
 vapi/Makefile.in
 *~
 scripts/videx
+scripts/videx-last
 vide*.tar.gz
 *.pyc
