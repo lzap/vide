@@ -1,5 +1,5 @@
 Name:           vide
-Version:        0.1.14
+Version:        0.1.15
 Release:        1%{?dist}
 Summary:        Multiple-tabs programmer's terminal for vim
 
@@ -78,6 +78,9 @@ gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
 
 
 %changelog
+* Tue Dec 20 2011 Lukas Zapletal <lzap+git@redhat.com> 0.1.15-1
+- using only git for version now
+
 * Tue Dec 20 2011 Lukas Zapletal <lzap+git@redhat.com> 0.1.14-1
 - using own approach to create VERSION
 
