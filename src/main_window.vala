@@ -53,7 +53,7 @@ public class Vide.MainWindow: Window {
   private VideConfig config;
 
   public MainWindow() {
-    set_title(_("Vide Terminal"));
+    set_title(Config.PACKAGE_NAME);
     set_default_size(800, 600);
     try {
       set_icon_from_file(Config.DATADIR + "/icons/hicolor/48x48/apps/vide.png");
