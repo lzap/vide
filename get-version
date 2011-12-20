@@ -2,13 +2,10 @@
 #
 # Get version from (in this order):
 #   1) .version file
-#   2) rel-eng dir (tito)
-#   3) latest git tag
+#   2) latest git tag
 #
 if [ -f .version ]; then
   cat .version
-elif [ -d rel-eng ]; then
-	cat rel-eng/packages/vide|sed 's/-.*$//'
 else
   git describe HEAD|sed 's/^vide-//'|sed 's/-.*$//'
 fi
