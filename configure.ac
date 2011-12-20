@@ -1,7 +1,7 @@
 # configure.ac
 
 # determine version number from the current directory (or set to "" for git)
-AC_INIT([Vide],[m4_esyscmd([pwd | sed 's/^.*vide-//'|tr -d '\n'])])
+AC_INIT([Vide],[m4_esyscmd([./get-version|tr -d '\n'])])
 AC_CONFIG_SRCDIR([src/vide.vala])
 AC_CONFIG_HEADERS([config.h])
 

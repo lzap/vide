@@ -17,3 +17,7 @@ DISTCLEANFILES = \
 	intltool-extract \
 	intltool-merge \
 	intltool-update
+
+#	store tito version number in a file for tarballs
+dist-hook:
+	./get-version > $(distdir)/.version
