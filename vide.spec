@@ -1,5 +1,5 @@
 Name:           vide
-Version:        0.1.11
+Version:        0.1.12
 Release:        1%{?dist}
 Summary:        Multiple-tabs programmer's terminal for vim
 
@@ -78,6 +78,10 @@ gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
 
 
 %changelog
+* Tue Dec 20 2011 Lukas Zapletal <lzap+git@redhat.com> 0.1.12-1
+- use name and version in the window title
+- version number now set from tito rel-eng dir
+
 * Mon Dec 19 2011 Lukas Zapletal <lzap+git@redhat.com> 0.1.11-1
 - adding vide-last to the spec file - fix
 
