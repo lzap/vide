@@ -1,7 +1,7 @@
 # configure.ac
 
 # version is not used (using tito and overriding)
-AC_INIT([Vide],[999.9.9])
+AC_INIT([Vide],[m4_esyscmd([cat rel-eng/packages/vide|sed 's/-.*$//'|tr -d '\n'])])
 AC_CONFIG_SRCDIR([src/vide.vala])
 AC_CONFIG_HEADERS([config.h])
 
