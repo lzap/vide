@@ -186,7 +186,7 @@ public class Vide.MainWindow: Window {
     close_btn.add(new Image.from_stock(Stock.CLOSE,Gtk.IconSize.MENU));
 
     hbox.pack_start(run_btn,false,false);
-    hbox.pack_start(new Label(tab_name));
+    hbox.pack_start(new Label(" "+tab_name+" "));
     hbox.pack_start(close_btn,false,false);
     hbox.show_all();
     return hbox;
