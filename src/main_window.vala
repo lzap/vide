@@ -161,19 +161,32 @@ public class Vide.MainWindow: Window {
 
   private Widget create_tab_header(string tab_name) {
     var hbox = new HBox(false,0);
-    hbox.pack_start(new Label(tab_name));
+
+    var style = new RcStyle();
+    style.xthickness = 0;
+    style.ythickness = 0;
+
+    var run_btn = new Button();
+    run_btn.name = tab_name;
+    run_btn.clicked.connect((widget) => {
+      var vterm = terminals[widget.name];
+      execute_tab(vterm.name, vterm.command, vterm.work_dir);
+    });
+    run_btn.modify_style(style);
+    run_btn.add(new Image.from_stock(Stock.MEDIA_PLAY,Gtk.IconSize.MENU));
+
     var close_btn = new Button();
     close_btn.set_relief(Gtk.ReliefStyle.NONE);
     close_btn.set_focus_on_click(false);
     close_btn.name = tab_name;
-    var style = new RcStyle();
-    style.xthickness = 0;
-    style.ythickness = 0;
     close_btn.modify_style(style);
     close_btn.clicked.connect((widget) => {
       close_tab(widget.name);
     });
     close_btn.add(new Image.from_stock(Stock.CLOSE,Gtk.IconSize.MENU));
+
+    hbox.pack_start(run_btn,false,false);
+    hbox.pack_start(new Label(tab_name));
     hbox.pack_start(close_btn,false,false);
     hbox.show_all();
     return hbox;
