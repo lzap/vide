@@ -8,16 +8,11 @@ License:        GPLv3+
 URL:            https://github.com/lzap/vide
 Source0:        http://lzap.fedorapeople.org/projects/vide/releases/%{name}-%{version}.tar.gz
 
-BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
-
-Requires:       dbus
+Requires:       dbus gtk2 vte libgee glib2 GConf2
 
 BuildRequires:  intltool gettext desktop-file-utils
 BuildRequires:  vala-devel >= 0.12
-BuildRequires:  pkgconfig(gtk+-2.0)
-BuildRequires:  pkgconfig(vte)
-BuildRequires:  pkgconfig(gee-1.0)
-BuildRequires:  pkgconfig(gio-2.0)
+BuildRequires:  gtk2-devel vte-devel libgee-devel glib2-devel GConf2-devel
 
 
 %description
@@ -37,7 +32,6 @@ make %{?_smp_mflags}
 
 
 %install
-%{__rm} -rf $RPM_BUILD_ROOT
 make install DESTDIR=$RPM_BUILD_ROOT
 
 desktop-file-install --delete-original  \
@@ -67,7 +61,6 @@ gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
 
 
 %files -f %{name}.lang
-%defattr(-,root,root,-)
 %doc AUTHORS COPYING INSTALL README
 %{_bindir}/%{name}
 %{_bindir}/%{name}x
