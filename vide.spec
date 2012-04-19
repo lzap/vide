@@ -1,5 +1,5 @@
 Name:           vide
-Version:        0.1.15
+Version:        0.1.16
 Release:        1%{?dist}
 Summary:        Multiple-tabs programmer's terminal for vim
 
@@ -74,6 +74,12 @@ gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
 
 
 %changelog
+* Thu Apr 19 2012 Lukas Zapletal <lzap+git@redhat.com> 0.1.16-1
+- fixing 0.6 gee compatibility issue
+- initial fedora spec review by amir
+- add a little space around tab name
+- added 'execute' button to each tab header
+
 * Tue Dec 20 2011 Lukas Zapletal <lzap+git@redhat.com> 0.1.15-1
 - using only git for version now
 
