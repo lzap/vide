@@ -29,7 +29,7 @@ public class Vide.VideTerminal {
   public string work_dir {get;set;}
   public Terminal term {get;set;}
   public int tab_number {get;set;}
-  public MenuItem menu {get;set;}
+  public Gtk.MenuItem menu {get;set;}
   public bool run_on_startup {get;set;}
 }
 
@@ -39,7 +39,7 @@ public class Vide.MainWindow: Window {
 
   private Notebook notebook;
 
-  private Menu menu;
+  private Gtk.Menu menu;
 
   private MenuToolButton execute_button;
 
@@ -80,7 +80,7 @@ public class Vide.MainWindow: Window {
     this.config = new VideConfig();
     notebook = new Notebook();
     set_default(notebook);
-    menu = new Menu();
+    menu = new Gtk.Menu();
 
     var toolbar = new Toolbar ();
     execute_button = new MenuToolButton.from_stock(Stock.MEDIA_PLAY);
@@ -144,7 +144,7 @@ public class Vide.MainWindow: Window {
   private void add_term(VideTerminal vterm) {
     // create menu if there is not any
     if (vterm.menu == null) {
-      vterm.menu = new MenuItem.with_label(vterm.name);
+      vterm.menu = new Gtk.MenuItem.with_label(vterm.name);
       vterm.menu.activate.connect( (term) => {
         select_term(vterm);
       });
@@ -243,7 +243,7 @@ public class Vide.MainWindow: Window {
     VideTerminal vterm = create_tab(tab_name,command,work_dir,run_on_startup);
     // execute command
     string wd = vterm.work_dir ?? Environment.get_variable("HOME");
-    vterm.pid = vterm.term.fork_command( (string) 0, (string[]) 0, new string[]{}, wd, true, true, true);
+    vterm.pid = vterm.term.fork_command("/bin/bash", {"-l"}, new string[]{}, wd, true, true, true);
     if (vterm.pid != -1)
       vterm.term.feed_child(vterm.command + "\n", vterm.command.length + 1);
       

@@ -12,10 +12,7 @@ Requires:       dbus gtk2 vte libgee glib2 GConf2
 
 BuildRequires:  intltool gettext desktop-file-utils
 BuildRequires:  vala-devel >= 0.12
-BuildRequires:  gtk2-devel vte-devel glib2-devel GConf2-devel
-
-# https://bugzilla.redhat.com/show_bug.cgi?id=736674
-BuildRequires:  pkgconfig(gee-1.0)
+BuildRequires:  gtk2-devel vte-devel libgee-devel glib2-devel GConf2-devel
 
 
 %description

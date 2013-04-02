@@ -8,7 +8,7 @@ public class KeyBindingManager : GLib.Object
   /**
    * list of binded keybindings
    */
-  private Gee.List<KeyBinding> bindings = new Gee.ArrayList<KeyBinding>();
+  private Gee.List<KeyBinding> bindings = new Gee.ArrayList<KeyBinding>(null);
 
   /**
    * Helper class to store keybinding
